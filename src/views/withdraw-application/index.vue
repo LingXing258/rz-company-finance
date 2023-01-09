@@ -21,7 +21,7 @@
 import Titles from '@/views/withdraw-application/components/titles.vue'
 import Forms from '@/views/withdraw-application/components/forms.vue'
 export default {
-  name: 'index',
+  name: 'StopIndex',
   components: { Titles, Forms },
   data(){
     return {

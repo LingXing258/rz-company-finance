@@ -14,7 +14,7 @@
                  class="iconfont"
                  icon="icon  icon-xiancunliangchaxun"
                  text="我的存量"
-                 to="/data"
+                 to="/stock"
                  icon-prefix="icon">
         </van-grid-item> 
         <van-grid-item
@@ -22,13 +22,6 @@
                  icon="icon  icon-zibenshichang"
                  text="参与项目"
                  to="/item"
-                 icon-prefix="icon">
-        </van-grid-item>
-        <van-grid-item
-                 class="iconfont"
-                 icon="icon  icon-zibenshichang"
-                 text="参与项目"
-                 to="/login"
                  icon-prefix="icon">
         </van-grid-item>
         </van-grid>

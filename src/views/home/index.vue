@@ -1,23 +1,21 @@
 <template>
-   <div class="container" >
-      <div class="page">
+   <div class="home-page" >
+
     <template v-if="show">
-    
     <introdouce-home :intro="home"></introdouce-home>
     
     <titles-home>
       <template v-slot:showData> 数据展示  </template>
     </titles-home>
     <present-data-home :Balance="home"></present-data-home>
-    <space-home></space-home>
+    <gap-with-ten-px></gap-with-ten-px>
 
 
     <titles-home>
       <template v-slot:oparate> 我的应用 </template>
     </titles-home>
     <operate-home :operate="home"></operate-home>
-    <space-home></space-home>
-
+    <gap-with-ten-px></gap-with-ten-px>
   
     <titles-home>
       <template v-slot:showData>我的操作</template>
@@ -31,22 +29,27 @@
       </div>
     </tempalte>
    </div>
-  </div>
 </template>
 
 <script>
-import IntrodouceHome from '@/views/home/components/IntrodouceHome.vue'
+import IntrodouceHome from '@/views/home/components/IntrodouceOfHome.vue'
 import PresentDataHome from '@/views/home/components/PresentDataHome.vue'
-import SpaceHome from '@/views/home/components/SpaceHome.vue'
-import OperateHome from '@/views/home/components/OperateHome.vue'
-import TitlesHome from '@/views/home/components/TitleHome.vue'
-import ApplyHome from '@/views/home/components/ApplyHome.vue'
+import GapWithTenPx from '@/components/gap/GapWithTenPx.vue';
+import OperateHome from '@/views/home/components/OperateOfHome.vue'
+import TitlesHome from '@/views/home/components/TitleOfHome.vue'
+import ApplyHome from '@/views/home/components/ApplyOfHome.vue'
 import ErrorHome from '@/views/error/index.vue'
 import { getGZTPZ } from '@/services/home-service.js'
 export default {
-  name: 'Home',
+  name: 'homeIndex',
   components: {
-    IntrodouceHome , PresentDataHome ,SpaceHome , OperateHome ,TitlesHome, ApplyHome ,ErrorHome
+    IntrodouceHome, 
+    PresentDataHome,
+    GapWithTenPx,
+    OperateHome,
+    TitlesHome,
+    ApplyHome,
+    ErrorHome
   },
   data () {
     return {
@@ -70,14 +73,10 @@ export default {
     }
   },
   created () {
-      // let  data =  this.getGZTPZId()
        
   }
 }
 </script>
 
 <style>
-.container{
-
-}
 </style>

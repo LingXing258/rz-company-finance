@@ -1,28 +1,30 @@
 <template>
-  <div class="detail">
-    <layout-detail-vue>
-       <template name="header">
-        8
-       </template>
-       
-       <!-- <template slot="body">
-        <tap></tap>
-       </template> -->
+  <div class="detail-page">
+    <layout-index>
 
-    </layout-detail-vue>
+       <template #header>
+        <titles></titles>
+        <intro></intro>
+       </template>
+
+        <template #body>
+        <tap></tap>
+       </template>
+
+    </layout-index>
     
   
    
   </div>
 </template>
 <script>
-import LayoutDetailVue from './layout/LayoutDetail.vue'
+import LayoutIndex from '@/views/person-details/layout/LayoutIndex'
 import intro from '@/views/person-details/components/introdouce.vue'
 import titles from '@/views/person-details/components/title.vue'
 import tap from '@/views/person-details/components/tap.vue'
 // import dayjs from 'dayjs'
 export default {
-  name: ' personDetailIndex',
+  name: ' DetailIndex',
   data () {
     return {
       // activeName: 1,
@@ -45,7 +47,7 @@ export default {
     }
   },
   components: {
-    intro,titles,tap, LayoutDetailVue
+    intro,titles,tap,LayoutIndex
   },
   methods: {
     // shows: function () {
@@ -76,24 +78,27 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-html ,body{
-  height: 100%;
-  width: 100%;
+.detail-page {
+  
 }
- ::v-deep(.van-collapse-item__content ){
-  padding:0px
-}
-::v-deep(.van-cell-group--inset) {
-  margin: 0px;
-}
-::v-deep(.van-field__control){
-  text-align: right;
-}
-.content {
-  width: 100%;
-  }
-  .detail{
-    height: 100vh;
-    width: 100vw;
-  }
+// html ,body{
+//   height: 100%;
+//   width: 100%;
+// }
+//  ::v-deep(.van-collapse-item__content ){
+//   padding:0px
+// }
+// ::v-deep(.van-cell-group--inset) {
+//   margin: 0px;
+// }
+// ::v-deep(.van-field__control){
+//   text-align: right;
+// }
+// .content {
+//   width: 100%;
+//   }
+//   .detail{
+//     height: 100vh;
+//     width: 100vw;
+//   }
 </style>

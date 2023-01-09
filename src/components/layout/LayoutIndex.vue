@@ -1,35 +1,33 @@
 <template>
-    <div class="container">   
-        <template >
+    <div class="container-out">   
          <div class="layout">
             <div class="header">
                <slot name="header"></slot>
              </div>
              <div class="body">
                  <div class="scroll-y">
-                  <slot name="body"></slot>
+                <slot name="body"></slot>
                  </div>
               </div>
               <div class="footer" >
                 <slot name="footer"></slot>
              </div>
         </div>
-        </template> 
-        </div>
+    </div>
  </template>
  <script>
 
  export default {
-   name: 'LayoutDetail',
+   name: 'layout',
 }
  </script>
  <style lang="scss" scoped>
- .container {
+ .container-out {
      height: 100vh;
      width: 100vw;
      overflow: hidden;
  }
- .title {
+ .layout {
      height: 100%;
      display: flex;
      flex-direction: column;
@@ -42,9 +40,6 @@
  .body .scroll-y {
      overflow-y: auto;
      height: 100%;
- }
- .footer {
-    height: 50px;
- }
+ } 
  </style>
  

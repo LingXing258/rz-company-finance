@@ -45,6 +45,7 @@
       name=" register_amount"
       label="本期拟投资额（万元）"
       :rules="userFrom.register_amount"
+      @blur="toFix"
     />
     <van-field
       v-model="amount"
@@ -129,6 +130,13 @@ export default {
     }
   },
   methods: {
+    toFix: function() {
+       var reg=/^\D/;//定义正则表达式，检查第一个字符是否为数字；
+        var patrn = /^\d+(.\d+)?$/;
+        if(patrn.test(this.register_amount)){
+          this.register_amount=this.toFixed(this.register_amount,4)
+        }
+    },
     onSubmits: function () {
       this.$refs.formData.submit()
     },
@@ -175,7 +183,8 @@ export default {
         this.$toast.fail(data.message);
       }
     },
-   toFixed(num,decimal) {
+    
+toFixed(num,decimal) {
 	num = num.toString();
 	let index = num.indexOf('.');
 	if (index !== -1) {

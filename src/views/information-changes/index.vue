@@ -1,36 +1,34 @@
 <template>
-   <div class="container">   
-       <template  v-if="show">
-        <div class="title">
-           <div class="header">
-               <titles :Detailtitle="titles">
-               </titles>
-            </div>
-            <div class="body">
-                <div class="scroll-y">
-                   <forms ref="chilrenForm" :newsChange="main" @buttonLoading="getChildrenNews"></forms>
-                </div>
-             </div>
-             <div class="footer" >
-                <van-button round block type="primary" @click="touchChildWays"  :loading="loading" >
-               提交
-             </van-button>
-            </div>
-       </div>
-       </template> 
-       <template v-else>
-        <news-error></news-error>
+   <div class="information-changes">
+    <layout-index>
+       <template #header>
+
+        <titles :Detailtitle="titles"> </titles>
+
        </template>
+       <template #body>
+
+       <forms ref="chilrenForm" :newsChange="main" @buttonLoading="getChildrenNews"></forms>
+
+      </template>
+      <template #footer>
+        
+        <van-button round block type="primary" @click="touchChildWays"  :loading="loading" > 提交</van-button>
+        
+      </template>
+    </layout-index>
+       
        </div>
 </template>
 <script>
+import LayoutIndex from '@/views/information-changes//layout/LayoutIndex.vue'
 import Titles from '@/views/information-changes/components/title.vue'
 import Forms from '@/views/information-changes/components/form.vue'
 import newsError from '@/views/error/index.vue'
 import { sendStartForm }  from '@/services/information-changes-services.js'
 export default {
   name: 'newsIndex',
-  components: { Titles, Forms, newsError },
+  components: { Titles, Forms, newsError ,LayoutIndex},
   data() {
     return {
       show:true,
@@ -78,26 +76,4 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.container {
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-}
-.title {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    display: flex;
-}
-.body {
-   flex: 1;
-   overflow: hidden;
-}
-.body .scroll-y {
-    overflow-y: auto;
-    height: 100%;
-}
-.footer {
-   height: 50px;
-}
 </style>

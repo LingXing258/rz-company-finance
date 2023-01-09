@@ -35,9 +35,9 @@
 </template>
 
 <script>
-import { getCode, sendLoginForm } from '@/services/login-services'
+import { getCode, sendLoginForm } from '@/services/login-services.js'
 export default {
-  name:'Login',
+  name:'login',
   data() {
     return {
         validateForm:{
@@ -65,8 +65,8 @@ export default {
 
              },
         loginForm:{
-          phone:'',
-          code:'',
+          phone:'1625785687',
+          code:'985635',
         },
         title: '登录',
         isSendCode: false,
@@ -80,7 +80,6 @@ export default {
     }
   },
   methods:{
-    
     countDown: function() {
       this.timer = setInterval(() => {
           // 替换文本，用es6里面的``这个来创建字符串模板，让秒实时改变
@@ -127,11 +126,16 @@ export default {
      }
     },
     login_operation_response:function(response){
-      if(response.code === 200) {
-      this.$toast.success( response.msg)
-     }else {
-      this.$toast.fail( response.msg)
-     }
+      this.$store.commit('setUser',response)
+      this.$router.push({name:'home'})
+      this.$toast.success(response.msg)
+    //   if(response.code === 200) {
+    //   this.$store.commit('setUser',response)
+    //   this.$route({name:'home'})
+    //   this.$toast.success( response.msg)
+    //  }else {
+    //   this.$toast.fail( response.msg)
+    //  }
     },
     sendSmsCode: async function() {
       if(this.validatePhone()) {
@@ -142,8 +146,15 @@ export default {
       }
     },
     onSubmit:async function(val) {
-          let { data } = await sendLoginForm()
-        
+          // let { data } = await sendLoginForm(val)
+          this.login_operation_response(this.loginForm)
+          // let f=Base64.encode(this.loginForm);//加密
+          // console.log(Base64.encode(this.loginForm))
+          // Base64.decode(this.loginForm);//加密
+          // console.log(Base64.decode(f))
+          // this.Base64.decode(this.pwd);//解密
+          // console.log(Base64.decode(this.loginForm))
+          // this.$store.commit('setUser',this.loginForm)
     }
   }
 }

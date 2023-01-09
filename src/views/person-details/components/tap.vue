@@ -28,7 +28,7 @@
           <van-field v-model="enrollment_year" label="入学年份" readonly  />
          <van-field v-model="faculty" name="facultyText"  label="所属院系" readonly/>
          <van-field v-model="professional_class" name="professional_class" label="专业班级"  />
-         <van-field v-model="education"  name="educationText" is-link readonly label="学历" />
+         <van-field v-model="education"  name="educationText" readonly label="学历" />
         </van-collapse-item>
     </van-collapse>
 
@@ -52,7 +52,7 @@
                  {{ uesrForm.addr_province }} {{  uesrForm.addr_city }} {{   uesrForm.addr_area }}
               </template>
             </van-cell>
-               <van-field  v-model="uesrForm.addr_address" label="具体地址"   rows="2"   autosize   type="textarea"  /> 
+               <van-field  v-model="uesrForm.addr_address" label="具体地址"   rows="2"   autosize   type="textarea" readonly /> 
         </van-collapse-item>
     </van-collapse>
    </div>
@@ -74,10 +74,9 @@ export default {
       addressTitle: '地址信息',
       mailTitle: '邮寄信息',
       
-       
      uesrForm:{
-      code: '',
-      name:'',
+      code: '222',
+      name:'关羽',
       claim_num: '',
       phone: '',
       email: '',
@@ -102,7 +101,7 @@ export default {
       addr_province: '',
       addr_city: '',
       addr_area: '',
-      addr_address: '',
+      addr_address: 'a地方玩分为非违法违规',
 
      }
     }
@@ -119,11 +118,27 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
   .tap .van-nav-bar__text {
      color: #969799;; 
 }
   .van-nav-bar .van-icon {
     color: #969799;;
 }
+  ::v-deep(.van-collapse-item__content ){
+   padding:0px
+ }
+ ::v-deep(.van-cell-group--inset) {
+   margin: 0px;
+ }
+ ::v-deep(.van-field__control){
+   text-align: right;
+ }
+ .content {
+   width: 100%;
+   }
+   .detail{
+     height: 100vh;
+     width: 100vw;
+   }
 </style>
