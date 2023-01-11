@@ -29,7 +29,7 @@
 </template>
 <script>
 export default {
-  name: 'Operate',
+  name: 'OperateHome',
   props:['operate'],
   methods:{
     toEachVue() {

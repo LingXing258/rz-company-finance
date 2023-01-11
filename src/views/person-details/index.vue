@@ -3,8 +3,8 @@
     <layout-index>
 
        <template #header>
-        <titles></titles>
-        <intro></intro>
+        <common-nav></common-nav>
+        <header-intro></header-intro>
        </template>
 
         <template #body>
@@ -19,10 +19,10 @@
 </template>
 <script>
 import LayoutIndex from '@/views/person-details/layout/LayoutIndex'
-import intro from '@/views/person-details/components/introdouce.vue'
-import titles from '@/views/person-details/components/title.vue'
+import HeaderIntro from '@/components/head-intro/HeadIntro.vue'
+//通用导航栏
+import CommonNav from '@/components/nav/CommonNav.vue'
 import tap from '@/views/person-details/components/tap.vue'
-// import dayjs from 'dayjs'
 export default {
   name: ' DetailIndex',
   data () {
@@ -47,7 +47,7 @@ export default {
     }
   },
   components: {
-    intro,titles,tap,LayoutIndex
+    HeaderIntro,tap,LayoutIndex, CommonNav
   },
   methods: {
     // shows: function () {

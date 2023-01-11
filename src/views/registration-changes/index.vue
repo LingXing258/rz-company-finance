@@ -3,7 +3,7 @@
 
    <layout-index>
       <template #header>
-        <titles></titles>
+        <common-nav></common-nav>
        </template>
 
         <template #body>
@@ -19,8 +19,8 @@
 </template>
 <script>
 import LayoutIndex from '@/views/registration-changes/layout/LayoutIndex.vue'
-import Titles from '@/views/registration-changes/components/titles.vue'
 import Forms from '@/views/registration-changes/components/form.vue'
+import CommonNav from '@/components/nav/CommonNav.vue'
 export default {
   name: 'registration',
   data () {
@@ -29,7 +29,7 @@ export default {
       loading:false
     }
   },
-  components: { Titles, Forms,LayoutIndex },
+  components: {CommonNav , Forms,LayoutIndex },
   methods: {
     submit: function () {
       this.$refs.form.onSubmits()

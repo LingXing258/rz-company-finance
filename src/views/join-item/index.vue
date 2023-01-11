@@ -3,13 +3,12 @@
     <layout-index>
 
        <template #header>
-        <!-- <tittle-of-stock></tittle-of-stock> -->
-        <common-nav></common-nav>
-        
+            <common-nav></common-nav>
+            <tittle-of-stock></tittle-of-stock>
        </template>
 
        <template #body>
-        <table-of-stock></table-of-stock>
+           <table-of-stock></table-of-stock>
        </template>
 
     </layout-index>
@@ -19,9 +18,11 @@
 </template>
 
 <script>
-import CommonNav from '@/components/nav/CommonNav.vue'
+//页面布局
 import LayoutIndex from '@/components/layout/LayoutIndex.vue';
-// import TittleOfStock from '@/views/join-item/components/titles.vue'
+//通用导航栏
+import CommonNav from '@/components/nav/CommonNav.vue'
+//页面table
 import TableOfStock from '@/views/join-item/components/tables.vue'
 
 export default {
@@ -29,7 +30,6 @@ export default {
   components:{
     CommonNav,
     LayoutIndex,
-    // TittleOfStock,
     TableOfStock 
   }
 }

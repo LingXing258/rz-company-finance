@@ -2,7 +2,8 @@
     <div class="container">
         <div class="title">
            <div class="header">
-           <titles></titles>
+          <common-nav></common-nav>
+           <!-- <titles></titles> -->
          </div>
          <div class="body">
             <div class="scroll-y">
@@ -18,11 +19,12 @@
     </div>
 </template>
 <script>
-import Titles from '@/views/withdraw-application/components/titles.vue'
+import CommonNav from '@/components/nav/CommonNav.vue'
+// import Titles from '@/views/withdraw-application/components/titles.vue'
 import Forms from '@/views/withdraw-application/components/forms.vue'
 export default {
   name: 'StopIndex',
-  components: { Titles, Forms },
+  components: { Forms ,CommonNav },
   data(){
     return {
       loading:false

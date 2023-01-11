@@ -62,29 +62,13 @@
 <script>
 import { areaList } from '@vant/area-data';
 import dayjs from 'dayjs'
-import { sendNewsChangeForm }  from '@/services/information-changes-services.js'
+// import { sendNewsChangeForm }  from '@/services/information-changes-services.js'
 export default {
   name: 'newsChangeForm',
   props:['newsChange'],
   data () {
     return {
-      // id: '',
-      // username: '',
-      // password: '',
-      // recognitionID: '',
-      // telephone: '',
-      // email: '',
-      // opinion: '',
-      // bankDeposit: '',
-      // accountName: '',
-      // bankAccount: '',
-      // enrollmentYear: '',
-      //  showPicker:false, 
-      //  projectNameValue:'', 
-      //  showPicker1:false,
-      //  showPicker2: false,
-      //  fieldValue: '',
-     
+  
 userFrom:{
    code:[
       { required: true, message: '输入不能为空,请填写编号' }
@@ -109,13 +93,13 @@ userFrom:{
          }
          ]
          },
-
-       code: '',
-       name:'',
+    
+       code: '', 
+       name:'', 
        claim_num: '',
-       phone: '',
-       email: '',
-       remarks: '',
+       phone: this.$store.state.user.phone,  
+       email: '', 
+       remarks: '', 
 
        bank:'',
        bank_account_name: '',
@@ -168,10 +152,10 @@ userFrom:{
       carmodel1 :'',
       showPicker4: false,
        
-      creator:this.newsChange.creator,
-      investor_id:this.newsChange.investor_id,
-      creatorID: this.newsChange.creatorID,
-      create_time: this.newsChange.create_time,
+      creator:this.$store.state.user.creator,
+      investor_id:this.$store.state.user.investor_id,
+      create_time: this.$store.state.user.create_time,
+
       loading:true
     }
 
@@ -212,13 +196,12 @@ userFrom:{
 
           creator:this.creator,
           investor_id:this.investor_id,
-          creatorID: this.creatorID,
           create_time: this.create_time
         }
      let subs=[ {tableName:'update_contacts',fields:[]} ]
      let forms = {
         fromMobile: 1,
-        flowKey: 'investor_updat',
+        flowKey: 'investor_update',
         formData:{main:{"fields":field},sub:subs},
         runId: ''
     }
@@ -274,8 +257,11 @@ userFrom:{
      this.showPicker3 = false
      this.$refs.myArea.reset()// 重置城市列表
   }
- 
+
   },
+  create(){
+   console.log(this.$store.state.user.phone,1111)
+  }
 }
 </script>
 

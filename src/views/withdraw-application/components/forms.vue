@@ -11,7 +11,7 @@
   />
 
   <van-field
-      v-model="balance"
+      v-model="balan"
       name="balance"
       readonly
       label="当前期存量投资额（万元）"
@@ -19,7 +19,7 @@
 
 
   <van-field
-  v-model="fieldValue"
+  v-model="typeText"
   is-link
    name="type"
     label="退资类型"
@@ -35,15 +35,27 @@
   />
 </van-popup>
 
-
-<van-field
-  v-model="valueText"
-   name="valueText"
+<div class="back">
+  <van-field
+  v-model="partText"
+   name="partText"
     label="请输入当前期存量投资额（万元）"
     :rules="[{ required: true, message: '输入不能为空,请填写请输入当前期存量投资额（万元）(合法数字)' }]"
     v-if="show"
+    placeholder="输入不能为空,请填写请输入当前期存量投资额"
   @blur="toFix2"
 />
+<van-field
+  v-model="amount1"
+   name="partText"
+    label="请输入当前期存量投资额（大写万元）"
+    :rules="[{ required: true, message: '输入不能为空,请填写请输入当前期存量投资额（万元）(合法数字)' }]"
+    v-if="show"
+    placeholder="输入不能为空,请填写请输入当前期存量投资额"
+  @blur="toFix2"
+/>
+</div>
+
 
 <van-field
       v-model="association_invest"
@@ -94,18 +106,19 @@ export default {
   data () {
     return {
       association_invest: '',
-      balance: '',
+      balance: 2556288,
       up_association_invest: '',
       type: '',
       name: '',
       leave_word: '',
       name_id:1,
 
-      // value: '',
-      valueText: '',
+    
+      partText: '',
+      up_partText: '',
       show:false,
 
-      fieldValue: '',
+      typeText: '',
 
       loading:true,
       showPicker2: false,
@@ -128,8 +141,17 @@ export default {
       toFix2: function() {
        var reg=/^\D/;//定义正则表达式，检查第一个字符是否为数字；
         var patrn = /^\d+(.\d+)?$/;
-        if(patrn.test(this.valueText)){
-          this.valueText=this.toFixed(this.valueText,4)
+        if(patrn.test(this.partText)){
+          this.partText=this.toFixed(this.partText,4)
+        }
+        let par = parseFloat(this.partText)
+         console.log(par)
+            par=par*10000
+            console.log(par)
+        if(this.type==2 && par > this.balance) {
+          this.$notify("你输入的金额大于当前期存量投资额");
+        } else if(this.balance - par < 200000){
+          this.$notify("退资后同期存量投资额不少于20万元，剩余不足，请选择全额退资");
         }
       },
 
@@ -146,10 +168,11 @@ export default {
 },
     onConfirm1:function(val) {
       this.type =val.value
-      this.fieldValue =val.text
+      this.typeText =val.text
      this.showPicker2=false
      },
     onSubmit: function () {
+      this.
       this.$refs.formData.submit()
     },
     pullParentloaingTrue:function() {
@@ -162,7 +185,7 @@ export default {
     },
     onSubmits:async function () {
       let field= {
-      association_invest: this.association_invest,
+      association_invest: this.association_invest*10000,
       balance: this.balance,
       up_association_invest: this.up_association_invest,
       type: this.type,
@@ -232,6 +255,22 @@ export default {
               this.up_association_invest=invest
       return  invest
     },
+    amount1() {
+              let  invest=this.dealBigMoney(this.partText)
+              this.up_partText=invest
+      return  invest
+    },
+    balan(){
+        if(this.balance != '')  {
+          this.balance=parseFloat(this.balance)
+           if(isNaN(this.balance)){
+             return this.balance 
+           }else {
+            return (this.balance)+'￥'
+           }
+        }
+       },
+    
   },
   watch:{
     type(newval,oldVal){
@@ -239,10 +278,12 @@ export default {
       if(newval == 2) {
        this.show = true
       }else {
-        this.show = false
-        // this.fieldValue=''
+        this.show = false,
+        this.partText = '',
+        this.up_partText=''
       }
     }
+
   }
 }
 </script>
@@ -259,5 +300,9 @@ export default {
  }
  .light_red  .van-field__control{
      color:red;
+ }
+ .back>.van-cell{
+  background-color: rgb(232, 242, 242);
+  border-bottom:2px;
  }
  </style>

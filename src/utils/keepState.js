@@ -19,11 +19,11 @@ export  const setCanExpireLocal = (key, value, expire) => {
         throw new Error('有效期应为一个有效数值')
       }
       // 86_400_000一天时间的毫秒数，_是数值分隔符
-      let time = expire * 86_400_000
+      let $time = expire * 86_400_000
      if(value){
         let obj = {
-            time: Date.now(), //存值时间戳
-            expire: time, //过期时间
+            saveTime: Date.now(), //存值时间戳
+            expire: $time, //过期时间
       }
       let assignObject = Object.assign(value,obj)
       let user = JSON.stringify(assignObject)

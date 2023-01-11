@@ -3,7 +3,7 @@
     <layout-index>
        <template #header>
 
-        <titles :Detailtitle="titles"> </titles>
+        <common-nav></common-nav>
 
        </template>
        <template #body>
@@ -22,13 +22,14 @@
 </template>
 <script>
 import LayoutIndex from '@/views/information-changes//layout/LayoutIndex.vue'
-import Titles from '@/views/information-changes/components/title.vue'
+import CommonNav from '@/components/nav/CommonNav.vue'
+// import Titles from '@/views/information-changes/components/title.vue'
 import Forms from '@/views/information-changes/components/form.vue'
-import newsError from '@/views/error/index.vue'
+import newsError from '@/views/error/intererror'
 import { sendStartForm }  from '@/services/information-changes-services.js'
 export default {
   name: 'newsIndex',
-  components: { Titles, Forms, newsError ,LayoutIndex},
+  components: { Forms, newsError ,LayoutIndex,CommonNav},
   data() {
     return {
       show:true,
@@ -48,13 +49,13 @@ export default {
     touchChildWays: function () {
     this.$refs.chilrenForm.onSubmits()
     },
-    chargeTitles: function() {
-      if(this.$route.path == '/newschange') {
-         this.titles = '投资人信息变更表'
-      } else if(this.$route.path == '/edit') {
-        this.titles = '编辑'
-      }
-    },
+    // chargeTitles: function() {
+    //   if(this.$route.path == '/newschange') {
+    //      this.titles = '投资人信息变更表'
+    //   } else if(this.$route.path == '/edit') {
+    //     this.titles = '编辑'
+    //   }
+    // },
     getChildrenNews: function(loading) {
         this.loading=loading
     },
@@ -70,8 +71,9 @@ export default {
   },
  
   created(){
-      this.chargeTitles()
-      this.getStartForm()
+      // this.chargeTitles()
+      // this.getStartForm()
+      // console.log(this.$store.state.user.phone)
     }
 }
 </script>

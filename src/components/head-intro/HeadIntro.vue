@@ -10,20 +10,37 @@
              <p>{{ intro.name }}</p>
           </div>
         </div>
-        <div class="intro-button">
+        <div class="intro-button" v-if="showDetailButton">
           <van-button type="primary" round size="mini" to="/detail">详情</van-button>
+       </div>
+       <div class="intro-button" v-if="showEditButton">
+          <van-button type="primary" round size="mini" to="/edit">编辑</van-button>
        </div>
       </div>
     </div>
  </template>
 <script>
 export default {
-  name: 'Introduce',
+  name: 'HeadIntro',
   props: ['intro'],
   data () {
     return {
+        showDetailButton:'',
+        showEditButton:'',
+        intro:{
+            name:'官宇'
+        }
     }
   },
+  mounted() {
+    if(this.$route.path == '/home'){
+      this.showDetailButton =true,
+      this.showEditButton = false
+    }else if(this.$route.path == '/detail') {
+        this.showDetailButton =false,
+        this.showEditButton = true
+    }
+  }
 }
 </script>
  <style lang="scss" scoped>

@@ -2,8 +2,8 @@
    <div class="home-page" >
 
     <template v-if="show">
-    <introdouce-home :intro="home"></introdouce-home>
-    
+  
+    <head-intro></head-intro>
     <titles-home>
       <template v-slot:showData> 数据展示  </template>
     </titles-home>
@@ -32,18 +32,19 @@
 </template>
 
 <script>
-import IntrodouceHome from '@/views/home/components/IntrodouceOfHome.vue'
+import HeadIntro from '@/components/head-intro/HeadIntro'
 import PresentDataHome from '@/views/home/components/PresentDataHome.vue'
 import GapWithTenPx from '@/components/gap/GapWithTenPx.vue';
 import OperateHome from '@/views/home/components/OperateOfHome.vue'
-import TitlesHome from '@/views/home/components/TitleOfHome.vue'
+import TitlesHome from '@/views/home/components/LeftTitleOfHome.vue'
 import ApplyHome from '@/views/home/components/ApplyOfHome.vue'
-import ErrorHome from '@/views/error/index.vue'
+import ErrorHome from '@/views/error/intererror'
 import { getGZTPZ } from '@/services/home-service.js'
 export default {
   name: 'homeIndex',
   components: {
-    IntrodouceHome, 
+    HeadIntro,
+    // IntrodouceHome, 
     PresentDataHome,
     GapWithTenPx,
     OperateHome,
@@ -67,10 +68,10 @@ export default {
     }
   },
   methods: {
-    getGZTPZId:async function() {
-        let { data }=  await getGZTPZ()
-        this.items = data
-    }
+    // getGZTPZId:async function() {
+    //     let { data }=  await getGZTPZ()
+    //     this.items = data
+    // }
   },
   created () {
        
